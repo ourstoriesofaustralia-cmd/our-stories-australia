@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Рассказы о природе, истории и людях Австралии.">
+    <title>Рассказы об Австралии</title>
+    <style>
+      :root { --ink:#1d2826; --blue:#0879bd; --paper:#fdfdfb; --line:#d9dedb; --soft:#f4f6f3; }
+      * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+      body { margin:0; color:var(--ink); background:var(--paper); font:17px/1.65 Arial, Helvetica, sans-serif; }
+      a { color:inherit; } .wrap { width:min(1180px, calc(100% - 48px)); margin:auto; }
+      header { color:var(--ink); background:linear-gradient(180deg,#f4f7f5,#fff); border-top:5px solid #244a43; }
+      .hero { min-height:0; padding:68px 0 58px; max-width:100%; }
+      .eyebrow { display:none; }
+      h1 { margin:0; font:400 clamp(2.8rem,5vw,4.7rem)/.98 Georgia, 'Times New Roman', serif; letter-spacing:-.05em; }
+      h1::before { content:'Истории с другого континента'; display:block; margin:0 0 19px; color:#4f665f; font:700 11px/1.1 Arial, Helvetica, sans-serif; letter-spacing:.17em; text-transform:uppercase; }
+      .welcome { display:grid; grid-template-columns:.92fr 1.08fr; gap:66px; margin-top:53px; font-size:1.05rem; color:#3e4946; }
+      .welcome figure { margin:0; padding:10px; background:#fff; box-shadow:0 14px 36px rgba(34,60,53,.12); } .welcome img { display:block; width:100%; height:auto; }
+      .welcome p { margin:22px 0 0; } .welcome .intro-right { padding:5px 0 0 28px; border-left:2px solid #bfcfc8; } .contact { margin-top:38px!important; } .contact strong, .contact a { color:var(--blue); } .contact strong { display:block; font-size:1.07rem; }
+      main { padding:72px 0 86px; } .section { margin:0; padding:39px 0 47px; border-top:1px solid var(--line); scroll-margin-top:18px; }
+      h2 { font:400 clamp(2rem,3.4vw,2.8rem)/1.08 Georgia, 'Times New Roman', serif; letter-spacing:-.035em; margin:0 0 29px; max-width:760px; }
+      .rule { display:none; }
+      .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 30px; }
+      .card { min-height:147px; display:grid; grid-template-columns:140px 1fr; gap:8px; align-items:center; padding:10px 0; overflow:visible; text-decoration:none; border-bottom:1px solid #e1e6e3; background:transparent; box-shadow:none; transition:opacity .15s; }
+      .card::before { content:''; display:block; height:123px; background:var(--image) left center/contain no-repeat #fff; transition:opacity .15s; }
+      .card:hover::before, .card:focus-visible::before { opacity:.74; }
+      .card:hover, .card:focus-visible { transform:none; border-color:#96aaa2; box-shadow:none; outline:none; }
+      .card span { padding:0; color:var(--ink); font:400 1.18rem/1.24 Georgia, 'Times New Roman', serif; }
+      .card span::after { content:' ↗'; color:var(--blue); font:400 1rem/1 Arial, sans-serif; }
+      .card:nth-child(9n+1) { --image:url('assets/discovering-australia.jpg'); } .card:nth-child(9n+2) { --image:url('assets/meet-sydney.jpg'); } .card:nth-child(9n+3) { --image:url('assets/amazing-walk.jpg'); } .card:nth-child(9n+4) { --image:url('assets/captain-flinders.jpg'); } .card:nth-child(9n+5) { --image:url('assets/captain-bligh.jpg'); } .card:nth-child(9n+6) { --image:url('assets/charles-darwin-trail.jpg'); } .card:nth-child(9n+7) { --image:url('assets/australian-flora.jpg'); } .card:nth-child(9n+8) { --image:url('assets/palestine-branch.jpg'); } .card:nth-child(9n) { --image:url('assets/pandanus-fruit.jpg'); }
+      /* Original Google Sites thumbnails, saved locally for an independent migration. */
+      .section:nth-of-type(2) .card:nth-child(1){--image:url('assets/captain-flinders.jpg')}.section:nth-of-type(2) .card:nth-child(2){--image:url('assets/captain-bligh.jpg')}.section:nth-of-type(2) .card:nth-child(3){--image:url('assets/charles-darwin-trail.jpg')}
+      .section:nth-of-type(3) .card:nth-child(1){--image:url('assets/australian-flora.jpg')}.section:nth-of-type(3) .card:nth-child(2){--image:url('assets/palestine-branch.jpg')}.section:nth-of-type(3) .card:nth-child(3){--image:url('assets/pandanus-fruit.jpg')}.section:nth-of-type(3) .card:nth-child(4){--image:url('assets/vaucluse.jpg')}.section:nth-of-type(3) .card:nth-child(5){--image:url('assets/fig-trees.jpg')}.section:nth-of-type(3) .card:nth-child(6){--image:url('assets/gondwana.jpg')}.section:nth-of-type(3) .card:nth-child(7){--image:url('assets/joseph-banks.jpg')}.section:nth-of-type(3) .card:nth-child(8){--image:url('assets/dinosaur-trees.jpg')}.section:nth-of-type(3) .card:nth-child(9){--image:url('assets/botanical-gardens.jpg')}
+      .section:nth-of-type(4) .card:nth-child(1){--image:url('assets/bridge-street-house.jpg')}.section:nth-of-type(4) .card:nth-child(2){--image:url('assets/first-governors.jpg')}.section:nth-of-type(4) .card:nth-child(3){--image:url('assets/thomas-mort.jpg')}
+      .section:nth-of-type(5) .card:nth-child(1){--image:url('assets/first-colony-architect.jpg')}.section:nth-of-type(5) .card:nth-child(2){--image:url('assets/edmund-blacket.jpg')}.section:nth-of-type(5) .card:nth-child(3){--image:url('assets/john-horbury-hunt.jpg')}.section:nth-of-type(5) .card:nth-child(4){--image:url('assets/james-barnet.jpg')}
+      .section:nth-of-type(6) .card:nth-child(1){--image:url('assets/off-the-highway.jpg')}.section:nth-of-type(6) .card:nth-child(2){--image:url('assets/abercrombie-castle.jpg')}.section:nth-of-type(6) .card:nth-child(3){--image:url('assets/berrima.jpg')}
+      .section:nth-of-type(7) .card:nth-child(1){--image:url('assets/amazing-stones.jpg')}.section:nth-of-type(7) .card:nth-child(2){--image:url('assets/opal.jpg')}.section:nth-of-type(7) .card:nth-child(3){--image:url('assets/sapphire.jpg')}
+      .section:nth-of-type(8) .card{--image:url('assets/australia-encounter.jpg')}.section:nth-of-type(9) .card:nth-child(1){--image:url('assets/mad-king-castles.jpg')}.section:nth-of-type(9) .card:nth-child(2){--image:url('assets/norfolk-island.jpg')}.section:nth-of-type(10) .card:nth-child(1){--image:url('assets/flower-sketches.jpg')}.section:nth-of-type(10) .card:nth-child(2){--image:url('assets/australian-money.jpg')}.section:nth-of-type(10) .card:nth-child(3){--image:url('assets/astonishing-report.jpg')}.section:nth-of-type(10) .card:nth-child(4){--image:url('assets/iskra-and-lev.png')}
+      .about { padding:0; background:transparent; border:0; max-width:950px; } .about p { margin:0; }
+      footer { padding:74px 0; background:var(--soft); color:#3e4946; border-top:1px solid var(--line); } footer h2 { margin-bottom:47px; } .authors { display:grid; grid-template-columns:1fr 1fr; gap:66px; font-size:1.04rem; } .authors p { margin:0 0 28px; } .authors img { display:block; width:100%; height:auto; box-shadow:0 12px 30px rgba(34,60,53,.13); } footer a { color:var(--blue); } .authors .contact { margin-top:36px!important; }
+      @media (max-width:720px) { .wrap { width:min(100% - 30px,1180px); } .hero { padding:43px 0; } .welcome, .authors { grid-template-columns:1fr; gap:29px; margin-top:38px; } .welcome .intro-right { padding:0; border:0; } main { padding-top:38px; } .grid { grid-template-columns:1fr; } .card { grid-template-columns:140px 1fr; gap:8px; } .section { padding:31px 0 36px; } footer { padding:49px 0; } footer h2 { margin-bottom:30px; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap hero">
+        <div class="eyebrow">Истории с другого континента</div>
+        <h1>Рассказы Об Австралии</h1>
+        <div class="welcome">
+          <div><figure><img src="assets/header.jpg" alt="Улуру, Австралия"></figure><p>Здесь вы найдете наши рассказы о природе, истории и людях далекой и необычной страны, занимающей отдельный континент. И, хотя первые европейцы прибыли сюда всего лишь два века назад, Австралия быстро догнала в своем развитии передовые страны Европы и Америки.</p></div>
+          <div class="intro-right"><p>А ведь природные условия страны не назовешь прекрасными. В центре ее расположены выжженные солнцем пустыни и буш, а леса жмутся к побережьям. Но страна богата природными ресурсами и ее населяют энергичные, талантливые и доброжелательные люди – «ози», как они себя называют. Это они за короткое время построили красивые города на берегах океана, проложили автомобильные и железные дороги от одного края континента до другого, насадили сады, возделали землю и создали свободное демократическое общество. Об этих людях и об их замечательной стране – Австралии мы и будем рассказывать читателям этого сайта.</p><p class="contact"><strong>Вопросы? Комментарии?</strong>Пишите нам по адресу <a href="mailto:iskra.rytch@gmail.com">iskra.rytch@gmail.com</a></p></div>
+        </div>
+      </div>
+    </header>
+    <main class="wrap">
+      <section class="section" id="articles"><h2>Статьи</h2><div class="rule"></div><div class="grid">
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1fojCfn9H_Jgy3SCepChkeQDOI8jAci3U/view?usp=share_link"><span>Как мы открывали нашу Австралию</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1d3n0fNKSRMa-WGqR6ysJuyhutRzQMx_3/view?usp=share_link"><span>Знакомьтесь – Сидней</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1t5spPNuLIe4sV46ZGri8Ivx1KGAqLXQB/view?usp=share_link"><span>Удвительная Прогулка</span></a>
+      </div></section>
+      <section class="section" id="explorers"><h2>Исследователи пятого континента</h2><div class="rule"></div><div class="grid">
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/15dkoU22l0VlXuGbAgJiEjpMXWEwF36wt/view?usp=share_link"><span>Капитан Мэттью Флиндерс</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1R5cstPrMRWPF3eHNPR77c5VR5LdP-IHd/view?usp=share_link"><span>Тернистый путь капитана Блая</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/178XLXdrs9UmbwPq8b5Ngz0mCqziS2B9b/view?usp=share_link"><span>Австралийской Тропой Чарлза Дарвина</span></a>
+      </div></section>
+      <section class="section" id="nature"><h2>Рассказы о природе Австралии</h2><div class="rule"></div><div class="grid">
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/11VfLuaE9KAsKpIFFNOcx4RJL9yN1ULBu/view?usp=share_link"><span>Эта уникальная флора Австралии</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1Ss9QNrZiwA9Yk4c094HbFDw_E8gtB9-J/view?usp=share_link"><span>Скажи мне ветка Палестины</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1QI7-r7IgM07LmbFHd-LLtwI3yr2f2shS/view?usp=share_link"><span>Волшебные плоды Пандануса</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1hqQA3k2DxJ1893sB8Bn0o9PGYDaCGgHW/view?usp=share_link"><span>Наша любовь – Воклюз</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1rIH5iyOm909hKmEU9hiGX6LzO46K_hgj/view?usp=share_link"><span>Эти удивительные фиги</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1-bj_NfDWMn081dmWVWI-jCXlmDrYuSsl/view?usp=share_link"><span>Мы Живем На Обломке Гондваны</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/10xRkmIa8qdibbgbzvWs2NjQfiEOnJcIK/view?usp=share_link"><span>Ботаник, открывший новый мир растений</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1epQfM14e4CbVxRcusEviO-wzjK2gzozC/view?usp=share_link"><span>Деревья эпохи динозавров</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1qsYvA3Ca6pTXRUIS_P0hkc1fLgaKtvtp/view?usp=share_link"><span>Поедем в Королевские Ботанические Сады!</span></a>
+      </div></section>
+      <section class="section" id="people"><h2>Знаменитые австралийцы</h2><div class="rule"></div><div class="grid">
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/15_xi0iIQK-ruNn19_XsXQyIO-a5Zk61N/view?usp=share_link"><span>Дом на Bridge Street</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1ekZBNo2_kaIus8vm5dBsGjvmKc2wUGVE/view?usp=share_link"><span>Первые губернаторы Австралии</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1-hJc9dWVILECmW8jxrJXkNNKpCqW7QLl/view"><span>Счастливая судьба Томаса Морта</span></a>
+      </div></section>
+      <section class="section" id="architects"><h2>Рассказы об австралийских архитекторах</h2><div class="rule"></div><div class="grid">
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1nm-L2sZN0ZLXm9G4VnTCWHdHaGGmkhPm/view?usp=share_link"><span>Первый архитектор Колонии</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1fbcLqm0UpIxZP_1PogGkIdBGD9kyDQLd/view?usp=share_link"><span>Эдмунд Блэкет — храмовый архитектор Сиднея</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1LgJXd-__HVrlUXM9olx7gW4_zSWfw_ZK/view?usp=share_link"><span>Такой необычный Джон Хoрбери Хант</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1SI9IYIsRtfQAVKzGGxMv-6EyUJs5BzQf/view?usp=share_link"><span>Великий Архитектор Колонии – Джеймс Барнет</span></a>
+      </div></section>
+      <section class="section" id="highway"><h2>Свернув с хайвея</h2><div class="rule"></div><div class="grid">
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1_kdIxRG0WXRxE_g7xIIUBf_96kq-TCDt/view?usp=share_link"><span>Свернув с хайвея</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1Nk5-7c_ohzddrOw-LrBRpQ_w2TIp-No_/view?usp=share_link"><span>Удивительный Замок Аберкромби</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1FS51ZVI4zb17v_YuBRbg8owvlVgqweBH/view?usp=share_link"><span>Эта дивная Беррима</span></a>
+      </div></section>
+      <section class="section" id="treasures"><h2>Сверкающие сокровища Австралии</h2><div class="rule"></div><div class="grid">
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1Z4QUtABh7N3uPiqzFASV-aEsD1To86Kf/view?usp=share_link"><span>Удивительные камни</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/165co08W7xmfUP-hfFFJevWnMAUi31kPS/view?usp=share_link"><span>Радужный камень</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1XEhx2-1wIxrcrNvcg-XT222lwBO_a8zA/view?usp=share_link"><span>Сапфир</span></a>
+      </div></section>
+      <section class="section"><h2>Россия–Австралия — духовные связи</h2><div class="rule"></div><div class="grid"><a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1mEHUUsBi_qQsJbJBD8q_SHBXwARHHwEf/view"><span>Невстреча с Австралией</span></a></div></section>
+      <section class="section"><h2>Из дальних странствий воротясь</h2><div class="rule"></div><div class="grid">
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1uH8uvohvhTsT7F10Q-AboJiYnGZ8KObk/view?usp=share_link"><span>Замки безумного короля</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1lNOEA6z9I9Rw9587MATUV57sC87dXOLm/view?usp=share_link"><span>Путешествие на остров Норфолк</span></a>
+      </div></section>
+      <section class="section"><h2>Рассказы наших друзей</h2><div class="rule"></div><div class="grid">
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/11VfLuaE9KAsKpIFFNOcx4RJL9yN1ULBu/view?usp=share_link"><span>Венок Цветочных Этюдов</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1sTX3RSC5U4vfSYSL1j2DEqs0nTH_3LuM/view?usp=share_link"><span>Из истории австралийских денег</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1cj6yEF8n2NI9co3PCCk4LEAuZQOx5NeJ/view?usp=share_link"><span>Удивительный репортаж</span></a>
+        <a class="card" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1gxf95lBrjxRPXsE1fDvWqJcyNPbH4x5x/view"><span>Искра И Лев</span></a>
+      </div></section>
+    </main>
+    <footer id="about"><div class="wrap"><h2>Про Авторов</h2><div class="authors"><div><p>Искра Рычагова и Лев Натапов москвичи. Оба закончили геологические факультеты: Искра – в МГУ, Лев – в Московском Институте Цветных Металлов и Золота. Занимались геологической съемкой и поисками в Сибири и восточных районах России. Все время трудились в Предприятии «Аэрогеология» Министерства Геологии, где Лев стал Главным Геологом, Лауреатом Государственной Премии и без отрыва от производства защитил кандидатскую и докторскую диссертации. Искра, по завершении геологической деятельности, работала гидом, знакомя туристов с памятниками древнерусской архитектуры севера России.</p><p>С 1996 года они живут в Австралии. Полюбив природу этой страны, ее людей и их историю, они начали писать об этом рассказы, с которыми и предлагают познакомиться посетителям этого сайта.</p></div><div><img src="assets/author-supplied.jpg" alt="Искра Рычагова и Лев Натапов"><p class="contact"><strong>Вопросы? Комментарии?</strong>Пишите нам по адресу <a href="mailto:iskra.rytch@gmail.com">iskra.rytch@gmail.com</a></p></div></div></div></footer>
+  </body>
+</html>
